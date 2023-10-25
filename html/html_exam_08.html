@@ -6,17 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-     table {
-            width: 100%; 
-            border-collapse: collapse;
-        }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
     table,
     th,
     td {
       border: 1px solid black;
-      
       border-collapse: collapse;
-    
+    }
+
+    iframe {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 0;
     }
   </style>
 </head>
@@ -30,22 +35,10 @@
       </th>
     </tr>
   </table>
-
   <div>
-    <iframe width="33%" height="315" src="https://www.youtube.com/embed/an9J6isFQag?si=wOgKWyEqzayH4jGh"
-      title="YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe>
-    <iframe width="33%" height="315" src="https://www.youtube.com/embed/an9J6isFQag?si=wOgKWyEqzayH4jGh"
-      title="YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe>
-    <iframe width="32%" height="315" src="https://www.youtube.com/embed/an9J6isFQag?si=wOgKWyEqzayH4jGh"
-      title="YouTube video player" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe>
+    <video width="33%" height="315" controls>
+      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4">
   </div>
-
   <table>
     <tr>
       <th>
