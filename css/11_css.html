@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <style>
+        .backgroundimg {
+            background-image: url(space.jpg);
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .text_class {
+            font-size: 30px;
+            color: white;
+        }
+        .red_text {
+            color: red;
+        }
+        .work-link {
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .work-box {
+            border: 2px solid white;
+            padding: 20px;
+            color: white;
+        }
+        nav {
+            background: black; /* 검은 바 색상 */
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            text-align: right; /* 우측 정렬 */
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: inline;
+            margin: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body class="backgroundimg">
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="text_class" id="home">
+        안녕하세요, 제 이름은 <span class="red_text">이준하</span>입니다.
+        <span>게임 개발자입니다.</span>
+    </div>
+
+    <div class="text_class" id="about">
+        <!-- 어바웃 페이지 내용 -->
+    </div>
+
+    <div class="text_class" id="projects">
+        <!-- 프로젝트 페이지 내용 -->
+    </div>
+
+    <div class="text_class" id="contact">
+        <!-- 컨택트 페이지 내용 -->
+    </div>
+
+    <div class="work-link">
+        <div class="work-box">
+            <p>View My Work →</p>
+            
+        </div>
+    </div>
+</body>
+</html>
