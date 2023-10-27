@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function myFunc() {
+            let num = prompt();
+            if(!isFinite(num)){
+               alert('숫자를입력해주세요');
+            }
+            else{
+                check(num);
+                
+            }
+        }
+        function check(num) {
+            if(num < 1||num > 100){
+                alert('1이상 100 이하를 넣어주세요');
+            }
+            else{
+                output();
+            }
+        }
+        function output() {
+            for(let i = 1; i<=100;i++){
+                console.log(i);
+            }
+            alert('완료되었습니다.');
+        }
+    </script>
+</head>
+<body>
+    <button onclick="myFunc()">
+        입력
+    </button>
+</body>
+</html>
