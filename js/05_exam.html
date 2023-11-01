@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .onMouse {
+            background-color: white;
+            color: black;
+        }
+        .outMouse {
+            background-color: gray;
+            color: white;
+        }
+    </style>
+    <script>
+        function onMouse(button) {
+            button.classList.add("onMouse");
+            button.classList.remove("outMouse");
+        }
+
+        function outMouse(button) {
+            button.classList.remove("onMouse");
+            button.classList.add("outMouse");
+        }
+    </script>
+</head>
+<body>
+    <button onmouseover="onMouse(this)" onmouseout="outMouse(this)">html</button>
+    <button onmouseover="onMouse(this)" onmouseout="outMouse(this)">css</button>
+    <button onmouseover="onMouse(this)" onmouseout="outMouse(this)">javascript</button>
+</body>
+</html>
