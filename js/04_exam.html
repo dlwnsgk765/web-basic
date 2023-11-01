@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .normal {
+        background-color: gray;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="html" class="normal" onclick="normal(1)">html</button>
+    <button id="css" class="normal" onclick="normal(2)">css</button>
+    <button id="javascript" class="normal" onclick="normal(3)">
+      javascript
+    </button>
+    <script>
+      const htmlButton = document.getElementById("html");
+      const cssButton = document.getElementById("css");
+      const javascript = document.getElementById("javascript");
+      function normal(num) {
+        if (num === 1) {
+          htmlButton.style.backgroundColor = "white";
+          htmlButton.style.color = "black";
+          cssButton.style.backgroundColor = "gray";
+          cssButton.style.color = "white";
+          javascript.style.backgroundColor = "gray";
+          javascript.style.color = "white";
+        } else if (num === 2) {
+          htmlButton.style.backgroundColor = "gray";
+          htmlButton.style.color = "white";
+          cssButton.style.backgroundColor = "white";
+          cssButton.style.color = "black";
+          javascript.style.backgroundColor = "gray";
+          javascript.style.color = "white";
+        } else if (num === 3) {
+          htmlButton.style.backgroundColor = "gray";
+          htmlButton.style.color = "white";
+          cssButton.style.backgroundColor = "gray";
+          cssButton.style.color = "white";
+          javascript.style.backgroundColor = "white";
+          javascript.style.color = "black";
+        }
+      }
+    </script>
+  </body>
+</html>
