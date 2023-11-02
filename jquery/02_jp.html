@@ -49,7 +49,15 @@
       $('#textInputButton').click(function () {
         console.log($('#textField').val());
         const text = $('#textField').val();
-        $('#result').text(text);
+        //$('#result').text(text);
+        $('#result').append(text);
+      })
+    </script>
+
+    <img src="512.jpg" alt="" id="pic" width="100">
+    <script>
+      $('#pic').click(function () {
+        $(this).attr('width', '200');
       })
     </script>
   </body>
