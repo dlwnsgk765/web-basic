@@ -11,7 +11,7 @@
     ></script>
     <style>
       #stage {
-        position: absolute;
+        position: relative;
         border: 1px solid;
         width: 1000px;
         height: 1000px;
@@ -25,56 +25,65 @@
   </head>
   <body>
     <div id="stage">
-    <img id="player" src="assets/character.png" alt="" />
+      <img id="player" src="assets/character.png" alt="" />
+    </div>
+    TIME : <span id="timeText">00:00</span>
     <script>
       const player = $("#player");
+      const timeText = $("#timeText");
+      let time = 0;
+      const timeInterval = () => {
+        time++;
+        timeText.text(time);
+      };
+      setInterval(timeInterval,1000);
 
       function moveRight() {
-        const playerRight = parseInt(player.css('right'), 10);
-        if(playerRight<=0){
+        const playerRight = parseInt(player.css("right"), 10);
+        if (playerRight <= 0) {
           return;
         }
-        player.css({left: '+=100px'});
+        player.css({ left: "+=100px" });
       }
       function moveLeft() {
-        const playerLeft = parseInt(player.css('left'), 10);
-        if(playerLeft<=0){
+        const playerLeft = parseInt(player.css("left"), 10);
+        if (playerLeft <= 0) {
           return;
         }
-        player.css({left: '-=100px'});
+        player.css({ left: "-=100px" });
       }
       function moveUp() {
-        const playerTop = parseInt(player.css('top'), 10);
-        if(playerTop<=0){
+        const playerTop = parseInt(player.css("top"), 10);
+        if (playerTop <= 0) {
           return;
         }
-        player.css({top: '-=100px'});
+        player.css({ top: "-=100px" });
       }
       function moveDown() {
-        const playerBottom = parseInt(player.css('bottom'), 10);
-        if(playerBottom<=0){
+        const playerBottom = parseInt(player.css("bottom"), 10);
+        if (playerBottom <= 0) {
           return;
         }
-        player.css({top: '+=100px'});
+        player.css({ top: "+=100px" });
       }
       $(document).keydown(function (event) {
-        console.log(event.key);
+        //console.log(event.key);
 
         switch (event.key) {
           case "d":
-            case 'ArrowRight':
+          case "ArrowRight":
             moveRight();
             break;
           case "a":
-          case 'ArrowLeft':
+          case "ArrowLeft":
             moveLeft();
             break;
           case "w":
-          case 'ArrowUp':
+          case "ArrowUp":
             moveUp();
             break;
           case "s":
-          case 'ArrowDown':
+          case "ArrowDown":
             moveDown();
         }
       });
