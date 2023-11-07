@@ -43,15 +43,17 @@
     <script>
         const player = $('#player');
         const enemy = $('#enemy');
-
+        //점프상태
         let isJumping = false;
+        let enemySpeed = 1;
+        const respawnTime = 1000;
 
         function update() {
           moveEnemy();
         }
 
         function moveEnemy() {
-          enemy.css({left : '-=3px'});
+          enemy.css({left : `-=${enemySpeed}px`});
 
           //나갔으면 원래 위치로 이동
           const enemyLeft = pxToInt(enemy.css('left'));
@@ -60,7 +62,15 @@
           }
         }
         function enemyReset()  {
+          //등장 타이밍 조절 500~4000
+          setTimeout(function () {
           enemy.css({left: '1000px'});
+          enemySpeed = getRandomValue(3,10);
+          respawnTime = getRandomValue(500,4000);  
+          }, respawnTime)
+        }
+        function getRandomValue(min,max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         function jump() {
           if(isJumping){
