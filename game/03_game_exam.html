@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
@@ -10,95 +10,143 @@
       crossorigin="anonymous"
     ></script>
     <style>
-        #stage {
-          position: relative;
-          border: 1px solid;
-          width: 1000px;
-          height: 1000px;
-        }
-        #player {
-          position: absolute;
-          width: 100px;
-          height: 100px;
-          bottom: 10px;
-          left: 10px;
-        }
-        #enemy{
-          position: absolute;
-          width: 100px;
-          height: 100px;
-          bottom: 10px;
-          right: 10px;  
-          transform: rotate(-90deg);
-        }
-      </style>
-</head>
-<body>
+      #stage {
+        position: relative;
+        border: 1px solid;
+        width: 1000px;
+        height: 1000px;
+        background-image: url(assets/BackGround.jpg);
+        background-size: auto 100%;
+        
+      }
+      #player {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        bottom: 10px;
+        left: 10px;
+      }
+      #enemy {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        bottom: 10px;
+        right: 10px;
+        transform: rotate(-90deg);
+      }
+      #gameOverScene {
+        visibility: hidden;
+        width: 100%;
+        height: 100%;
+        background-color: aqua;
+        text-align: center;
+        display: flex;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
     <!-- div#stage>img#player-->
     <div id="stage">
-      <img src="assets/character.png" alt="" id="player">
-      <img src="assets/missile.jpg" alt="" id="enemy">
+      <img src="assets/character.png" alt="" id="player" />
+      <img src="assets/missile.jpg" alt="" id="enemy" />
+      <div id="gameOverScene">
+        Game Over
+        <br />
+        <button onclick="gameReset()">재시작</button>
+      </div>
     </div>
 
     <script>
-        const player = $('#player');
-        const enemy = $('#enemy');
-        //점프상태
-        let isJumping = false;
-        let enemySpeed = 1;
-        const respawnTime = 1000;
+      const player = $("#player");
+      const enemy = $("#enemy");
+      //점프상태
+      let isJumping = false;
+      let enemySpeed = 1;
+      let respawnTime = 1000;
 
-        function update() {
+      let isGameOver = false;
+
+      function update() {
+        if (!isGameOver) {
           moveEnemy();
         }
+        if (onCollisionEnter(player, enemy)) {
+          isGameOver = true;
 
-        function moveEnemy() {
-          enemy.css({left : `-=${enemySpeed}px`});
+          $('#gameOverScene').css('visibility', 'visible');
+        }
+      }
 
-          //나갔으면 원래 위치로 이동
-          const enemyLeft = pxToInt(enemy.css('left'));
-          if(enemyLeft< -100){
-            enemyReset();
-          }
+      function moveEnemy() {
+        enemy.css({ left: `-=${enemySpeed}px` });
+
+        //나갔으면 원래 위치로 이동
+        const enemyLeft = pxToInt(enemy.css("left"));
+        if (enemyLeft < -100) {
+          enemyReset();
         }
-        function enemyReset()  {
-          //등장 타이밍 조절 500~4000
-          setTimeout(function () {
-          enemy.css({left: '1000px'});
-          enemySpeed = getRandomValue(3,10);
-          respawnTime = getRandomValue(500,4000);  
-          }, respawnTime)
+      }
+      function enemyReset() {
+        //등장 타이밍 조절 500~4000
+        setTimeout(function () {
+          enemy.css({ left: "1000px" });
+          enemySpeed = getRandomValue(3, 10);
+          respawnTime = getRandomValue(500, 4000);
+        }, respawnTime);
+      }
+      function getRandomValue(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+      function jump() {
+        if (isJumping) {
+          return;
         }
-        function getRandomValue(min,max) {
-          return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-        function jump() {
-          if(isJumping){
-            return;
-          }
-          isJumping = true;
-          player.animate({bottom: '+=400px'});
-          player.animate({bottom: '-=400px'}, function (params) {
-            //연타방지
-            isJumping = false;
-          });
-          
-        }
-        $(document).keydown(function (event) {
+        isJumping = true;
+        player.animate({ bottom: "+=400px" });
+        player.animate({ bottom: "-=400px" }, function (params) {
+          //연타방지
+          isJumping = false;
+        });
+      }
+      $(document).keydown(function (event) {
         //console.log(event.key);
 
         switch (event.key) {
-          case ' ':
+          case " ":
             jump();
             break;
-            default:
+          default:
         }
       });
       // 픽셀 string을 숫자로 변환 '100px' -> 100
       function pxToInt(pxStr) {
-        return parseInt(pxStr,10);
+        return parseInt(pxStr, 10);
       }
-       setInterval(update, 1000/144);
+      //업데이트가되게하는함수
+      setInterval(update, 1000 / 144);
+
+      function onCollisionEnter($element1, $element2) {
+        const rect1 = $element1.get(0).getBoundingClientRect();
+        const rect2 = $element2.get(0).getBoundingClientRect();
+
+        return (
+          rect1.right > rect2.left &&
+          rect1.left < rect2.right &&
+          rect1.bottom > rect2.top &&
+          rect1.top < rect2.bottom
+        );
+      }
+      //게임상태초기화
+      function gameReset() {
+        isGameOver = false;
+        isJumping = false;
+        enemySpeed = 3;
+        $('#gameOverScene').css('visibility', 'hidden');
+        enemy.css({ left: "1000px" });
+      }
     </script>
-</body>
+  </body>
 </html>
