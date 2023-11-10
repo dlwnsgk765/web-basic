@@ -1,0 +1,16 @@
+<script>
+  // ? 뗀 쿼리 문자열
+  const queryString = window.location.search.slice(1);
+
+  let queryParams = queryString.split("&");
+  const postId = queryParams.split("=")[1];
+
+  fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+    .then((response) => response.json())
+    .then((jsonArray) => {
+      jsonArray.forEach((e) => {
+        
+      });
+    });
+  console.log(resultJson);
+</script>

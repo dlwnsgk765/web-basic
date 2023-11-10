@@ -1,0 +1,16 @@
+09 맞다
+
+<script>
+  // ? 뗀 쿼리 문자열
+  const queryString = window.location.search.slice(1);
+
+  let queryParams = queryString.split("&");
+  const postId = queryParams.split("=")[1];
+  queryParams.forEach((e) => {
+    const keyValue = e.split("=");
+    const key = keyValue[0];
+    const value = keyValue[1];
+    resultJson[key] = decodeURIComponent(value);
+  });
+  console.log(resultJson);
+</script>

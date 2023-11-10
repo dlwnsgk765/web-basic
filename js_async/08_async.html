@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="naver">09번</button>
+
+    <script>
+        document.getElementById('naver').addEventListener('click',function () {
+            //a 태그와 같다, ?써서 보냄 그 다음은 &
+            window.location.href = '09_08target.html?가나다&라마바사';
+        })
+    </script>
+</body>
+</html>
